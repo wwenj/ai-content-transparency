@@ -8,126 +8,91 @@
   <a href="./README.en.md">English</a>
 </p>
 
-<p>🪧 A lightweight transparency initiative and generator for AI-assisted content creation</p>
+<p>A voluntary transparency and self-discipline initiative for AI participation in content creation, with a built-in badge generator</p>
 
 <p>
-  <a href="https://wwenj.github.io/ai-content-transparency/generator/index.html">Open Generator</a>
+  <a href="https://wwenj.github.io/ai-content-transparency/generator/index.html">AI Disclosure Badge Generator</a>
 </p>
 
 </div>
 
 ## Overview
 
-`ai-content-transparency` is an open project for disclosing AI participation in content creation in a simple, explicit, and practical way. It helps creators state how much AI was involved and what roles were handled by AI versus humans.
-
-The project also provides a browser-based card generator for creating declaration images that can be placed at the beginning of an article or page.
+This project is designed for content creation scenarios and aims to provide a simple, explicit, and practical way to disclose AI usage transparently. It also includes an online declaration card generator for quickly producing a badge image suitable for the beginning of an article.
 
 ## Why This Project
 
-AI is now widely used for drafting, polishing, rewriting, summarizing, and structuring content. However, most published work still does not clearly state whether AI participated, how much it contributed, or which tasks it handled. This leads to several problems:
+As AI capabilities spread rapidly, their impact on content creation has become unprecedented. It is now increasingly difficult to create content without AI tools, yet most published works still do not clearly explain whether AI was involved, how much it contributed, or what role it played. This leads to several issues:
 
 - readers cannot accurately judge how the content was produced
-- creators lack a simple and consistent disclosure format
-- the boundary between human-led work and heavily AI-assisted work becomes unclear
+- creators lack a consistent and clear disclosure format
+- the boundary between fully human-created content and heavily AI-assisted content becomes blurred
+- large-scale AI-generated publishing leads to an overflow of low-quality content and seriously harms the reading experience
 
-The position of this project is straightforward: `AI is allowed, but transparency comes first`.
+The position of this project is straightforward: **AI is not prohibited, but transparency comes first**.
 
 ## Core Principles
 
 ### 1. Transparency First
 
-If AI materially contributes to the final content, that participation should be disclosed in a visible and understandable way.
+If AI has materially contributed to the final content, that involvement should be disclosed in a clear, visible, and understandable way.
 
-### 2. AI Is Not Prohibited
+### 2. AI Usage Is Not Opposed
 
-This project does not oppose AI usage. It opposes hidden usage, vague statements, and misleading presentation.
+This project does not treat AI as a tool that should be rejected. What it opposes is hidden usage, vague wording, or deliberate audience misdirection.
 
 ### 3. Human Responsibility Remains
 
-The final publisher remains responsible for factual accuracy, judgment, framing, and the consequences of publication, regardless of which tools were used.
+Whether AI is used or not, the final publisher remains responsible for factual accuracy, judgment, content framing, and the result of publication.
 
 ### 4. Disclosure Should Be Specific
 
-Instead of vague wording such as “partially AI-assisted,” this project recommends clearly stating:
+The project recommends explicitly stating:
 
-- AI ratio `ai_ratio`
-- Human ratio `human_ratio`
-- AI roles `ai_roles`
-- Human roles `human_roles`
+- AI ratio
+- AI roles
 
 ### 5. Voluntary Adoption
 
-This is an open initiative, not a law, not a platform policy, and not a certification system. Its value depends on creator self-discipline and community adoption.
+This is an open-source initiative, not a legal rule, not a platform requirement, and not a certification system. Its value comes from creator self-discipline and community consensus.
 
-## Disclosure Specification
+### Display Recommendation
 
-The recommended minimum structure contains four core fields:
-
-| Field | Meaning | Notes |
-| --- | --- | --- |
-| `ai_ratio` | AI contribution ratio | Integer from `0` to `100` |
-| `human_ratio` | Human contribution ratio | Integer from `0` to `100`, and together with `ai_ratio` must equal `100` |
-| `ai_roles` | AI roles | Concrete tasks handled by AI |
-| `human_roles` | Human roles | Concrete tasks handled by humans |
-
-### Example
-
-```json
-{
-  "version": "1.0",
-  "ai_ratio": 35,
-  "human_ratio": 65,
-  "ai_roles": [
-    "outline drafting",
-    "language polishing",
-    "title suggestions"
-  ],
-  "human_roles": [
-    "topic selection",
-    "argument design",
-    "fact review",
-    "final approval"
-  ],
-  "note": "Voluntary self-disclosure by the author."
-}
-```
-
-### Display Rules
-
-1. The declaration should appear at the beginning of the article, page, or post
-2. It should not be hidden in footnotes, collapsed areas, or low-visibility sections
-3. It should not use misleading wording
-4. If a card image is used, a text version is still recommended
+The declaration should be placed at the beginning of the article, page, or post.
 
 ## Quick Start
 
-### Online Generator
+### Online AI Declaration Generator
 
-- Direct link: [https://wwenj.github.io/ai-content-transparency/generator/index.html](https://wwenj.github.io/ai-content-transparency/generator/index.html)
+- Open directly and export: [https://wwenj.github.io/ai-content-transparency/generator/index.html](https://wwenj.github.io/ai-content-transparency/generator/index.html)
 
-### Usage Steps
+### Steps
 
-1. Enter the AI ratio and human ratio
-2. Generate and export the declaration card
-3. Place the card or text declaration at the beginning of the content
+1. Enter the AI ratio and AI roles
+2. Generate the card and export the image
+3. Place the declaration card or text notice at the beginning of the content
 
-## Preview Examples
+### Preview Examples (Light and Dark Themes)
 
-![Example 1](./examples/example1.png)
+**Settings Panel**
+![Settings Panel](./examples/setting.png)
 
-![Example 2](./examples/example2.png)
+**Light Example**
+![Light Example](./examples/example2.png)
+
+**Dark Example**
+![Dark Example](./examples/example1.png)
 
 ## Use Cases
 
 - blog posts
 - paid knowledge content
 - technical documentation
-- research notes
 - curated information articles
-- creator long-form posts
+- research notes
+- long-form creator content
 
 ## Open Source
 
 - License: [MIT](./LICENSE)
 - Generator: [generator/index.html](./generator/index.html)
-
