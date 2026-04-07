@@ -274,12 +274,37 @@
     }
 
     .btn-theme {
-      background: #64748b;
+      background: #e2e8f0;
+      color: #475569;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .btn-theme:hover {
+      background: #cbd5e1;
+      opacity: 1;
+    }
+
+    .btn-theme.active {
+      background: #10b981;
       color: white;
+      border-color: #059669;
     }
 
     body.dark .btn-theme {
+      background: #334155;
+      color: #e2e8f0;
+    }
+
+    body.dark .btn-theme:hover {
       background: #475569;
+      opacity: 1;
+    }
+
+    body.dark .btn-theme.active {
+      background: #10b981;
+      color: white;
+      border-color: #059669;
     }
 
     .card {
@@ -863,12 +888,17 @@
     }
 
     function setTheme(theme) {
+      const lightThemeBtn = document.getElementById('lightThemeBtn');
+      const darkThemeBtn = document.getElementById('darkThemeBtn');
+
       if (theme === 'dark') {
         document.body.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+        lightThemeBtn.classList.remove('active');
+        darkThemeBtn.classList.add('active');
       } else {
         document.body.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+        lightThemeBtn.classList.add('active');
+        darkThemeBtn.classList.remove('active');
       }
     }
 
@@ -883,9 +913,8 @@
       const darkThemeBtn = document.getElementById('darkThemeBtn');
       const aiInput = document.getElementById('aiInput');
 
-      // 加载保存的主题
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      setTheme(savedTheme);
+      // 始终默认浅色，不使用缓存
+      setTheme('light');
 
       lightThemeBtn.addEventListener('click', () => setTheme('light'));
       darkThemeBtn.addEventListener('click', () => setTheme('dark'));
