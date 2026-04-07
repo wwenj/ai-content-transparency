@@ -13,7 +13,7 @@
 <p> 面向 AI 参与内容创作的自律与透明化声明倡议，附带标识生成工具</p>
 
 <p>
-  <a href="https://wwenj.github.io/ai-content-transparency/generator/index.html">声明标识快速生成器</a>
+  <a href="https://wwenj.github.io/ai-content-transparency/generator/index.html">AI 声明标识快速生成器</a>
 </p>
 
 </div>
