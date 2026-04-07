@@ -1,114 +1,40 @@
-# AI Content Transparency Specification
+# AI 内容透明声明规范
 
-[English](#english) | [中文](#中文)
+[English](./SPEC.en.md)
 
-## English
-
-### 1. Scope
-
-This specification defines a minimal disclosure format for AI participation in published content. It is designed for articles, blog posts, newsletters, notes, documentation, and similar text-first media.
-
-### 2. Required Fields
-
-#### `ai_ratio`
-
-- Type: integer
-- Range: `0` to `100`
-- Meaning: estimated percentage of AI contribution to the final published content
-- Note: this is a self-reported estimate of contribution to output, not a measure of time spent
-
-#### `human_ratio`
-
-- Type: integer
-- Range: `0` to `100`
-- Meaning: estimated percentage of human contribution to the final published content
-- Rule: `ai_ratio + human_ratio = 100`
-
-#### `ai_roles`
-
-- Type: array of strings
-- Meaning: concrete tasks completed by AI
-- Examples: `"outline drafting"`, `"language polishing"`, `"title suggestions"`, `"translation draft"`
-
-#### `human_roles`
-
-- Type: array of strings
-- Meaning: concrete tasks completed by humans
-- Examples: `"topic selection"`, `"argument design"`, `"fact review"`, `"final approval"`
-
-### 3. Rules
-
-1. `ai_ratio` and `human_ratio` must add up to `100`.
-2. If `ai_ratio > 0`, `ai_roles` should contain at least one specific role.
-3. If `human_ratio > 0`, `human_roles` should contain at least one specific role.
-4. Ratios should reflect contribution to the published result, not only drafting time or tool usage frequency.
-5. Roles should be concrete and understandable. Avoid vague wording such as `"assisted"` without explanation.
-
-### 4. Example JSON
-
-```json
-{
-  "version": "1.0",
-  "ai_ratio": 35,
-  "human_ratio": 65,
-  "ai_roles": [
-    "outline drafting",
-    "language polishing",
-    "title suggestions"
-  ],
-  "human_roles": [
-    "topic selection",
-    "argument design",
-    "fact review",
-    "final approval"
-  ],
-  "note": "Voluntary self-disclosure by the author."
-}
-```
-
-### 5. Display Rules
-
-1. The declaration must appear at the beginning of the article, page, or post.
-2. Prefer placing it before the main body, or immediately below the title and metadata.
-3. It must be visible and readable. It should not be hidden in footnotes, collapsible blocks, or visually minimized areas.
-4. It must not use misleading wording. If AI materially contributed, do not label the content as fully human-made.
-5. When a card image is used, the same information should remain clear in text or accessible metadata when possible.
-
-## 中文
-
-### 1. 适用范围
+## 1. 适用范围
 
 本规范定义一套最小化的 AI 参与声明格式，适用于文章、博客、通讯、笔记、文档等以文本为主的发布内容。
 
-### 2. 核心字段
+## 2. 核心字段
 
-#### `ai_ratio`
+### `ai_ratio`
 
 - 类型：整数
 - 范围：`0` 到 `100`
 - 含义：AI 对最终发布内容的估算贡献占比
 - 说明：这是对最终产出贡献度的自我估算，不等同于投入时长
 
-#### `human_ratio`
+### `human_ratio`
 
 - 类型：整数
 - 范围：`0` 到 `100`
 - 含义：人类对最终发布内容的估算贡献占比
 - 规则：`ai_ratio + human_ratio = 100`
 
-#### `ai_roles`
+### `ai_roles`
 
 - 类型：字符串数组
 - 含义：由 AI 实际承担的具体任务
 - 示例：`"提纲起草"`、`"语言润色"`、`"标题建议"`、`"翻译初稿"`
 
-#### `human_roles`
+### `human_roles`
 
 - 类型：字符串数组
 - 含义：由人类实际承担的具体任务
 - 示例：`"选题确定"`、`"论证设计"`、`"事实复核"`、`"最终审核"`
 
-### 3. 规则要求
+## 3. 规则要求
 
 1. `ai_ratio` 与 `human_ratio` 之和必须为 `100`。
 2. 当 `ai_ratio > 0` 时，`ai_roles` 应至少包含一个明确分工。
@@ -116,7 +42,7 @@ This specification defines a minimal disclosure format for AI participation in p
 4. 占比应反映最终发布结果中的贡献，而不只是起草时间或工具使用频率。
 5. 分工描述应明确、可理解，避免仅写“辅助”“参与过”等模糊表述。
 
-### 4. 示例 JSON
+## 4. 示例 JSON
 
 ```json
 {
@@ -138,7 +64,7 @@ This specification defines a minimal disclosure format for AI participation in p
 }
 ```
 
-### 5. 展示规范
+## 5. 展示规范
 
 1. 声明必须放在文章、页面或帖文开头。
 2. 建议放在正文之前，或标题与基础信息之后、正文开始之前。
