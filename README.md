@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./examples/logo.png" alt="logo" width="120" style="margin-bottom: 20px;">
+
 # AI Content Transparency
 
 <p>
