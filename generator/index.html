@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章AI占比介绍</title>
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      transition: background 0.3s ease;
+    }
+
+    body.dark {
+      background: #000000;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .control-panel {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .control-panel {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .input-group label {
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      color: #1f2937;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .input-group label {
+      color: #e2e8f0;
+    }
+
+    body.dark .input-group span {
+      color: #94a3b8;
+    }
+
+    .input-group input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: 14px;
+      background: #ffffff;
+      color: #1f2937;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .input-group input {
+      background: #0f172a;
+      border-color: #334155;
+      color: #e2e8f0;
+    }
+
+    body.dark .input-group input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    .btn-primary {
+      background: #10b981;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #7c3aed;
+      color: white;
+    }
+
+    .btn-theme {
+      background: #64748b;
+      color: white;
+    }
+
+    body.dark .btn-theme {
+      background: #475569;
+    }
+
+    .card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      box-shadow: none;
+      padding: 20px;
+      width: 768px;
+      margin: 0 auto;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .card {
+      background: #1a1a1a;
+      border-color: #2a2a2a;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.dark .card::before {
+      background:
+        linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(16, 185, 129, 0.3), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.dark .card::after {
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.5), rgba(16, 185, 129, 0.5), transparent);
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .card-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .card-header h2 {
+      color: #f1f5f9;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      min-width: 80px;
+      justify-content: center;
+    }
+
+    .badge-ai {
+      background: rgba(124, 59, 237, 0.15);
+      color: #7c3aed;
+      border: 1.5px solid rgba(124, 59, 237, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    body.dark .badge-ai {
+      background: rgba(124, 58, 237, 0.25);
+      color: #a78bfa;
+      border-color: rgba(124, 58, 237, 0.5);
+    }
+
+    .badge-human {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1.5px solid rgba(16, 185, 129, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    body.dark .badge-human {
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+
+    .badge-label {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .progress-track {
+      position: relative;
+      flex: 1;
+      height: 16px;
+      background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .progress-track {
+      background: linear-gradient(to bottom, #334155, #1e293b);
+      border-color: #475569;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .progress-combined {
+      height: 100%;
+      display: flex;
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-ai {
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .progress-ai::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+      border-radius: 999px 999px 0 0;
+    }
+
+    .progress-human {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .progress-human::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+      border-radius: 999px 999px 0 0;
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .detail-text {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .detail-text {
+      color: #94a3b8;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e5e7eb;
+      margin: 12px 0;
+      transition: background 0.3s ease;
+    }
+
+    body.dark .divider {
+      background: #334155;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #6b7280;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .footer-text {
+      color: #94a3b8;
+    }
+
+    .footer-text strong {
+      color: #1f2937;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .footer-text strong {
+      color: #f1f5f9;
+    }
+
+    @media (max-width: 800px) {
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 控制面板 -->
+    <div class="control-panel">
+      <div class="control-row">
+        <div class="input-group">
+          <label for="aiInput">AI 占比:</label>
+          <input type="number" id="aiInput" min="0" max="100" value="40" placeholder="输入 0-100">
+          <span>%</span>
+        </div>
+        <button id="lightThemeBtn" class="btn btn-theme">
+          <iconify-icon icon="lucide:sun"></iconify-icon>
+          浅色
+        </button>
+        <button id="darkThemeBtn" class="btn btn-theme">
+          <iconify-icon icon="lucide:moon"></iconify-icon>
+          暗黑
+        </button>
+        <button id="updateBtn" class="btn btn-primary">
+          <iconify-icon icon="lucide:refresh-cw"></iconify-icon>
+          更新数据
+        </button>
+        <button id="copyBtn" class="btn btn-primary">
+          <iconify-icon icon="lucide:copy"></iconify-icon>
+          复制图片
+        </button>
+        <button id="downloadBtn" class="btn btn-secondary">
+          <iconify-icon icon="lucide:download"></iconify-icon>
+          下载图片
+        </button>
+      </div>
+    </div>
+
+    <!-- 卡片内容 -->
+    <div class="card" id="cardContent">
+      <div class="card-header">
+        <iconify-icon icon="lucide:shield-alert" style="color: #10b981; font-size: 20px;"></iconify-icon>
+        <h2>文章创作 AI 自律与透明化声明</h2>
+      </div>
+
+      <div class="progress-row">
+        <div class="badge badge-ai">
+          <span class="badge-label">AI</span>
+          <span id="aiPercent">40%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-combined">
+            <div class="progress-ai" id="aiProgress" style="width: 40%;"></div>
+            <div class="progress-human" id="humanProgress" style="width: 60%;"></div>
+          </div>
+        </div>
+        <div class="badge badge-human">
+          <span class="badge-label">人工</span>
+          <span id="humanPercent">60%</span>
+        </div>
+      </div>
+
+      <div class="details-row">
+        <div class="detail-item">
+          <iconify-icon icon="lucide:sparkles" style="color: #7c3aed; font-size: 16px; margin-top: 2px;"></iconify-icon>
+          <div class="detail-text">数据收集、内容整理、文本润色、事实校验</div>
+        </div>
+        <div class="detail-item">
+          <iconify-icon icon="lucide:user-pen" style="color: #10b981; font-size: 16px; margin-top: 2px;"></iconify-icon>
+          <div class="detail-text">核心观点、逻辑架构、深度思考、最终审核</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="footer-text">
+        <strong>作者注：</strong>现代创作已无法彻底脱离 AI，也导致低质内容泛滥。为确保透明度与阅读质量，本文特在前文如实说明 AI 的参与占比与具体分工。同时倡议 AI 使用的规范与自律。
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let aiRatio = 40;
+    let humanRatio = 60;
+
+    function initAnimation() {
+      const aiProgress = document.getElementById('aiProgress');
+      const humanProgress = document.getElementById('humanProgress');
+      setTimeout(() => {
+        aiProgress.style.width = aiRatio + '%';
+        humanProgress.style.width = humanRatio + '%';
+      }, 300);
+    }
+
+    function updateRatio(newAiRatio) {
+      const aiProgress = document.getElementById('aiProgress');
+      const humanProgress = document.getElementById('humanProgress');
+      const aiPercent = document.getElementById('aiPercent');
+      const humanPercent = document.getElementById('humanPercent');
+      const newHumanRatio = 100 - newAiRatio;
+      aiProgress.style.width = newAiRatio + '%';
+      humanProgress.style.width = newHumanRatio + '%';
+      aiPercent.textContent = newAiRatio + '%';
+      humanPercent.textContent = newHumanRatio + '%';
+      aiRatio = newAiRatio;
+      humanRatio = newHumanRatio;
+    }
+
+    // 替换 iconify-icon 为内联 SVG
+    function replaceIcons(root) {
+      const icons = root.querySelectorAll('iconify-icon');
+      const backups = [];
+      icons.forEach(icon => {
+        const svg = icon.shadowRoot?.querySelector('svg');
+        if (!svg) return;
+        const clonedSvg = svg.cloneNode(true);
+        const rect = icon.getBoundingClientRect();
+
+        // 获取 icon 的颜色（从 style 或计算样式）
+        const iconColor = icon.style.color || getComputedStyle(icon).color;
+
+        // 应用样式到 SVG
+        clonedSvg.style.width = rect.width + 'px';
+        clonedSvg.style.height = rect.height + 'px';
+        clonedSvg.style.display = 'inline-block';
+        clonedSvg.style.verticalAlign = 'middle';
+        clonedSvg.style.color = iconColor;
+
+        // 将颜色应用到 SVG 的 path 元素上
+        clonedSvg.querySelectorAll('path').forEach(path => {
+          if (!path.getAttribute('fill') || path.getAttribute('fill') === 'currentColor') {
+            path.setAttribute('fill', iconColor);
+          }
+        });
+
+        backups.push({ icon, parent: icon.parentNode, svg: clonedSvg });
+        icon.parentNode.replaceChild(clonedSvg, icon);
+      });
+      return backups;
+    }
+
+    function restoreIcons(backups) {
+      backups.forEach(({ icon, parent, svg }) => {
+        if (svg.parentNode) {
+          svg.parentNode.replaceChild(icon, svg);
+        }
+      });
+    }
+
+    async function captureCard() {
+      const el = document.getElementById('cardContent');
+      await document.fonts.ready;
+      await new Promise(r => setTimeout(r, 200));
+
+      const backups = replaceIcons(el);
+      await new Promise(r => setTimeout(r, 100));
+
+      try {
+        const isDark = document.body.classList.contains('dark');
+        const canvas = await html2canvas(el, {
+          backgroundColor: isDark ? '#1a1a1a' : '#ffffff',
+          scale: 3,
+          useCORS: true,
+          logging: false,
+        });
+        restoreIcons(backups);
+        return new Promise((resolve, reject) => {
+          canvas.toBlob(blob => {
+            if (blob) resolve(blob);
+            else reject(new Error('toBlob failed'));
+          }, 'image/png');
+        });
+      } catch (err) {
+        restoreIcons(backups);
+        throw err;
+      }
+    }
+
+    async function copyCard() {
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.disabled = true;
+      copyBtn.innerHTML = '<iconify-icon icon="lucide:loader-2"></iconify-icon> 生成中...';
+      try {
+        const blob = await captureCard();
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        copyBtn.innerHTML = '<iconify-icon icon="lucide:check"></iconify-icon> 复制成功';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<iconify-icon icon="lucide:copy"></iconify-icon> 复制图片';
+          copyBtn.disabled = false;
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败:', error);
+        copyBtn.innerHTML = '<iconify-icon icon="lucide:x"></iconify-icon> 复制失败';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<iconify-icon icon="lucide:copy"></iconify-icon> 复制图片';
+          copyBtn.disabled = false;
+        }, 2000);
+      }
+    }
+
+    async function downloadCard() {
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.disabled = true;
+      downloadBtn.innerHTML = '<iconify-icon icon="lucide:loader-2"></iconify-icon> 生成中...';
+      try {
+        const blob = await captureCard();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = `AI占比声明_${aiRatio}%.png`;
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
+        downloadBtn.innerHTML = '<iconify-icon icon="lucide:check"></iconify-icon> 下载成功';
+        setTimeout(() => {
+          downloadBtn.innerHTML = '<iconify-icon icon="lucide:download"></iconify-icon> 下载图片';
+          downloadBtn.disabled = false;
+        }, 2000);
+      } catch (error) {
+        console.error('下载失败:', error);
+        downloadBtn.innerHTML = '<iconify-icon icon="lucide:x"></iconify-icon> 下载失败';
+        setTimeout(() => {
+          downloadBtn.innerHTML = '<iconify-icon icon="lucide:download"></iconify-icon> 下载图片';
+          downloadBtn.disabled = false;
+        }, 2000);
+      }
+    }
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAnimation();
+      const updateBtn = document.getElementById('updateBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const lightThemeBtn = document.getElementById('lightThemeBtn');
+      const darkThemeBtn = document.getElementById('darkThemeBtn');
+      const aiInput = document.getElementById('aiInput');
+
+      // 加载保存的主题
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      setTheme(savedTheme);
+
+      lightThemeBtn.addEventListener('click', () => setTheme('light'));
+      darkThemeBtn.addEventListener('click', () => setTheme('dark'));
+
+      updateBtn.addEventListener('click', () => {
+        const val = parseInt(aiInput.value);
+        if (isNaN(val) || val < 0 || val > 100) {
+          alert('请输入 0-100 之间的数值');
+          return;
+        }
+        updateRatio(val);
+      });
+
+      aiInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') updateBtn.click();
+      });
+
+      copyBtn.addEventListener('click', copyCard);
+      downloadBtn.addEventListener('click', downloadCard);
+    });
+  </script>
+</body>
+
+</html>
