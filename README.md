@@ -8,7 +8,7 @@
   <a href="./README.en.md">English</a>
 </p>
 
-<p>🪧 面向 AI 参与内容创作的透明声明倡议与轻量生成工具</p>
+<p> 面向 AI 参与内容创作的透明声明倡议与轻量生成工具</p>
 
 <p>
   <a href="https://wwenj.github.io/ai-content-transparency/generator/index.html">快速使用生成器</a>
@@ -63,12 +63,12 @@
 
 建议采用以下四个核心字段：
 
-| 字段 | 含义 | 说明 |
-| --- | --- | --- |
-| `ai_ratio` | AI 占比 | `0-100` 的整数 |
+| 字段          | 含义     | 说明                                         |
+| ------------- | -------- | -------------------------------------------- |
+| `ai_ratio`    | AI 占比  | `0-100` 的整数                               |
 | `human_ratio` | 人类占比 | `0-100` 的整数，且与 `ai_ratio` 之和为 `100` |
-| `ai_roles` | AI 分工 | AI 实际承担的任务列表 |
-| `human_roles` | 人类分工 | 人类实际承担的任务列表 |
+| `ai_roles`    | AI 分工  | AI 实际承担的任务列表                        |
+| `human_roles` | 人类分工 | 人类实际承担的任务列表                       |
 
 ### 示例
 
@@ -77,17 +77,8 @@
   "version": "1.0",
   "ai_ratio": 35,
   "human_ratio": 65,
-  "ai_roles": [
-    "提纲起草",
-    "语言润色",
-    "标题建议"
-  ],
-  "human_roles": [
-    "选题确定",
-    "论证设计",
-    "事实复核",
-    "最终审核"
-  ],
+  "ai_roles": ["提纲起草", "语言润色", "标题建议"],
+  "human_roles": ["选题确定", "论证设计", "事实复核", "最终审核"],
   "note": "作者自愿进行的透明声明。"
 }
 ```
@@ -130,4 +121,3 @@
 
 - License: [MIT](./LICENSE)
 - Generator: [generator/index.html](./generator/index.html)
-

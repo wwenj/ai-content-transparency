@@ -33,6 +33,7 @@
       width: 100%;
       max-width: 900px;
       margin: 0 auto;
+      margin-top: -10%;
     }
 
     .control-panel {
@@ -40,8 +41,8 @@
       border: 1px solid #e5e7eb;
       border-radius: 8px;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
       transition: all 0.3s ease;
     }
 
@@ -53,8 +54,140 @@
     .control-row {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .control-row:last-child {
+      margin-bottom: 0;
+      margin-top: 20px;
+      justify-content: space-around;
+    }
+
+    .control-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .control-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 6px;
+      white-space: nowrap;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .control-section-title {
+      color: #64748b;
+    }
+
+    .tag-input-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .tag-input-group label {
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      color: #6b7280;
+      transition: color 0.3s ease;
+    }
+
+    body.dark .tag-input-group label {
+      color: #94a3b8;
+    }
+
+    .tag-input {
+      flex: 1;
+      padding: 6px 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: 13px;
+      background: #ffffff;
+      color: #1f2937;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .tag-input {
+      background: #0f172a;
+      border-color: #334155;
+      color: #e2e8f0;
+    }
+
+    .tag-input:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    body.dark .tag-input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 16px;
+      font-size: 12px;
+      color: #10b981;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .tag {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    .tag.ai-tag {
+      background: rgba(124, 58, 237, 0.1);
+      border-color: rgba(124, 58, 237, 0.3);
+      color: #7c3aed;
+    }
+
+    body.dark .tag.ai-tag {
+      background: rgba(124, 58, 237, 0.15);
+      border-color: rgba(124, 58, 237, 0.4);
+      color: #a78bfa;
+    }
+
+    .tag-remove {
+      cursor: pointer;
+      font-weight: bold;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .tag-remove:hover {
+      opacity: 1;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
     .input-group {
@@ -152,19 +285,20 @@
     .card {
       position: relative;
       background: #ffffff;
-      border: 1px solid #f0f0f0;
-      border-radius: 8px;
-      box-shadow: none;
-      padding: 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 24px;
       width: 768px;
       margin: 0 auto;
-      overflow: hidden;
+      overflow: visible;
       transition: all 0.3s ease;
     }
 
     body.dark .card {
       background: #1a1a1a;
-      border-color: #2a2a2a;
+      border-color: #404040;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .card::before {
@@ -190,17 +324,18 @@
     .card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 200px;
+      top: -2px;
+      left: 10px;
+      width: 310px;
       height: 2px;
-      background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(16, 185, 129, 0.3), transparent);
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.6), rgba(16, 185, 129, 0.6), transparent);
       pointer-events: none;
-      z-index: 0;
+      z-index: 2;
+      border-radius: 12px 0 0 0;
     }
 
     body.dark .card::after {
-      background: linear-gradient(90deg, rgba(124, 58, 237, 0.5), rgba(16, 185, 129, 0.5), transparent);
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.8), rgba(16, 185, 129, 0.8), transparent);
     }
 
     .card>* {
@@ -392,6 +527,12 @@
       color: #f1f5f9;
     }
 
+    #cardWrapper {
+      padding: 20px;
+      display: inline-block;
+      width: 100%;
+    }
+
     @media (max-width: 800px) {
       .card {
         width: 100%;
@@ -404,11 +545,20 @@
   <div class="container">
     <!-- 控制面板 -->
     <div class="control-panel">
+      <!-- 标题行 -->
+      <div class="control-row" style="margin-bottom: 12px;">
+        <span class="control-section-title"
+          style="font-size: 14px; font-weight: 700; color: #1f2937; text-transform: none; letter-spacing: 0;">主题配置</span>
+      </div>
+      
+      <!-- 第一行：AI 占比 + AI 角色分工 -->
       <div class="control-row">
-        <div class="input-group">
-          <label for="aiInput">AI 占比:</label>
-          <input type="number" id="aiInput" min="0" max="100" value="40" placeholder="输入 0-100">
-          <span>%</span>
+        <div class="control-section">
+          <span class="control-section-title">AI 占比</span>
+          <div class="input-group">
+            <input type="number" id="aiInput" min="0" max="100" value="40" placeholder="0-100" style="max-width: 70px;">
+            <span>%</span>
+          </div>
         </div>
         <button id="lightThemeBtn" class="btn btn-theme">
           <iconify-icon icon="lucide:sun"></iconify-icon>
@@ -418,60 +568,88 @@
           <iconify-icon icon="lucide:moon"></iconify-icon>
           暗黑
         </button>
-        <button id="updateBtn" class="btn btn-primary">
-          <iconify-icon icon="lucide:refresh-cw"></iconify-icon>
-          更新数据
-        </button>
-        <button id="copyBtn" class="btn btn-primary">
-          <iconify-icon icon="lucide:copy"></iconify-icon>
-          复制图片
-        </button>
-        <button id="downloadBtn" class="btn btn-secondary">
-          <iconify-icon icon="lucide:download"></iconify-icon>
-          下载图片
-        </button>
+      </div>
+      
+      <!-- 第二行：人工角色分工 -->
+      <div class="control-row">
+        <div class="control-section" style="flex: 1;">
+          <span class="control-section-title">AI 分工</span>
+          <div style="display: flex; align-items: center; gap: 6px; flex: 1;">
+            <input type="text" id="aiRoleInput" class="tag-input" placeholder="按 Enter 添加" style="max-width: 150px;">
+          </div>
+          <div class="tag-container" id="aiRoleContainer" style="margin-top: 0; margin-left: 6px;"></div>
+        </div>
+      
+        <div class="control-section" style="flex: 1;">
+          <span class="control-section-title">人工分工</span>
+          <div style="display: flex; align-items: center; gap: 6px; flex: 1;">
+            <input type="text" id="humanRoleInput" class="tag-input" placeholder="按 Enter 添加" style="max-width: 150px;">
+          </div>
+          <div class="tag-container" id="humanRoleContainer" style="margin-top: 0; margin-left: 6px;"></div>
+        </div>
+      </div>
+      <!-- 第三行：主题和操作按钮 -->
+      <div class="control-row">
+        <div class="button-group">
+          <button id="updateBtn" class="btn btn-primary">
+            <iconify-icon icon="lucide:refresh-cw"></iconify-icon>
+            更新数据
+          </button>
+          <button id="copyBtn" class="btn btn-secondary">
+            <iconify-icon icon="lucide:copy"></iconify-icon>
+            复制图片
+          </button>
+          <button id="downloadBtn" class="btn btn-secondary">
+            <iconify-icon icon="lucide:download"></iconify-icon>
+            下载图片
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- 卡片内容 -->
-    <div class="card" id="cardContent">
-      <div class="card-header">
-        <iconify-icon icon="lucide:shield-alert" style="color: #10b981; font-size: 20px;"></iconify-icon>
-        <h2>文章创作 AI 自律与透明化声明</h2>
-      </div>
+    <div id="cardWrapper">
+      <div class="card" id="cardContent">
+        <div class="card-header">
+          <iconify-icon icon="lucide:shield-alert" style="color: #10b981; font-size: 20px;"></iconify-icon>
+          <h2 id="cardTitle">文章创作 AI 自律与透明化声明</h2>
+          </div>
 
-      <div class="progress-row">
-        <div class="badge badge-ai">
-          <span class="badge-label">AI</span>
-          <span id="aiPercent">40%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-combined">
-            <div class="progress-ai" id="aiProgress" style="width: 40%;"></div>
-            <div class="progress-human" id="humanProgress" style="width: 60%;"></div>
+        <div class="progress-row">
+          <div class="badge badge-ai">
+            <span class="badge-label">AI</span>
+            <span id="aiPercent">40%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-combined">
+              <div class="progress-ai" id="aiProgress" style="width: 40%;"></div>
+              <div class="progress-human" id="humanProgress" style="width: 60%;"></div>
+            </div>
+          </div>
+          <div class="badge badge-human">
+            <span class="badge-label">人工</span>
+            <span id="humanPercent">60%</span>
           </div>
         </div>
-        <div class="badge badge-human">
-          <span class="badge-label">人工</span>
-          <span id="humanPercent">60%</span>
-        </div>
-      </div>
 
-      <div class="details-row">
-        <div class="detail-item">
-          <iconify-icon icon="lucide:sparkles" style="color: #7c3aed; font-size: 16px; margin-top: 2px;"></iconify-icon>
-          <div class="detail-text">数据收集、内容整理、文本润色、事实校验</div>
-        </div>
-        <div class="detail-item">
-          <iconify-icon icon="lucide:user-pen" style="color: #10b981; font-size: 16px; margin-top: 2px;"></iconify-icon>
-          <div class="detail-text">核心观点、逻辑架构、深度思考、最终审核</div>
-        </div>
-      </div>
+        <div class="details-row" id="detailsRow">
+          <div class="detail-item">
+            <iconify-icon icon="lucide:sparkles" style="color: #7c3aed; font-size: 16px; margin-top: 2px;"></iconify-icon>
+            <div class="detail-text" id="aiRoleText">数据收集、内容整理、文本润色、事实校验</div>
+            </div>
+            <div class="detail-item">
+              <iconify-icon icon="lucide:user-pen" style="color: #10b981; font-size: 16px; margin-top: 2px;"></iconify-icon>
+            <div class="detail-text" id="humanRoleText">核心观点、逻辑架构、深度思考、最终审核</div>
+            </div>
+            </div>
 
-      <div class="divider"></div>
+        <div class="divider"></div>
 
-      <div class="footer-text">
-        <strong>作者注：</strong>现代创作已无法彻底脱离 AI，也导致低质内容泛滥。为确保透明度与阅读质量，本文特在前文如实说明 AI 的参与占比与具体分工。同时倡议 AI 使用的规范与自律。
+        <div class="footer-text">
+          <strong>作者注：</strong><span id="cardDescription">现代创作已无法彻底脱离 AI，也导致低质内容泛滥。为确保透明度与阅读质量，本文特在前文如实说明 AI
+            的参与占比与具体分工。同时倡议 AI
+            使用的规范与自律。</span>
+          </div>
       </div>
     </div>
   </div>
@@ -479,6 +657,8 @@
   <script>
     let aiRatio = 40;
     let humanRatio = 60;
+          let aiRoles = ['数据收集', '内容整理', '文本润色', '事实校验'];
+          let humanRoles = ['核心观点', '逻辑架构', '深度思考', '最终审核'];
 
     function initAnimation() {
       const aiProgress = document.getElementById('aiProgress');
@@ -502,6 +682,67 @@
       aiRatio = newAiRatio;
       humanRatio = newHumanRatio;
     }
+
+          function addTag(container, text, isAi = false) {
+            const tag = document.createElement('div');
+            tag.className = isAi ? 'tag ai-tag' : 'tag';
+            tag.innerHTML = `${text}<span class="tag-remove">×</span>`;
+            tag.querySelector('.tag-remove').addEventListener('click', () => {
+              tag.remove();
+              updateRolesDisplay();
+            });
+            container.appendChild(tag);
+          }
+
+          function updateRolesDisplay() {
+            const aiRoles = Array.from(document.querySelectorAll('#aiRoleContainer .tag')).map(t => t.textContent.replace('×', '').trim());
+            const humanRoles = Array.from(document.querySelectorAll('#humanRoleContainer .tag')).map(t => t.textContent.replace('×', '').trim());
+
+            document.getElementById('aiRoleText').textContent = aiRoles.length > 0 ? aiRoles.join('、') : '数据收集、内容整理、文本润色、事实校验';
+            document.getElementById('humanRoleText').textContent = humanRoles.length > 0 ? humanRoles.join('、') : '核心观点、逻辑架构、深度思考、最终审核';
+          }
+
+          function setupTagInputs() {
+            const aiRoleInput = document.getElementById('aiRoleInput');
+            const humanRoleInput = document.getElementById('humanRoleInput');
+            const aiRoleContainer = document.getElementById('aiRoleContainer');
+            const humanRoleContainer = document.getElementById('humanRoleContainer');
+
+            aiRoleInput.addEventListener('keypress', (e) => {
+              if (e.key === 'Enter' && aiRoleInput.value.trim()) {
+                addTag(aiRoleContainer, aiRoleInput.value.trim(), true);
+                aiRoleInput.value = '';
+                updateRolesDisplay();
+              }
+            });
+
+            humanRoleInput.addEventListener('keypress', (e) => {
+              if (e.key === 'Enter' && humanRoleInput.value.trim()) {
+                addTag(humanRoleContainer, humanRoleInput.value.trim(), false);
+                humanRoleInput.value = '';
+                updateRolesDisplay();
+              }
+            });
+
+            // 初始化默认标签
+            aiRoles.forEach(role => addTag(aiRoleContainer, role, true));
+            humanRoles.forEach(role => addTag(humanRoleContainer, role, false));
+          }
+
+          function setupConfigInputs() {
+            const titleInput = document.getElementById('titleInput');
+            const descriptionInput = document.getElementById('descriptionInput');
+            const cardTitle = document.getElementById('cardTitle');
+            const cardDescription = document.getElementById('cardDescription');
+
+            titleInput.addEventListener('input', () => {
+              cardTitle.textContent = titleInput.value || '文章创作 AI 自律与透明化声明';
+            });
+
+            descriptionInput.addEventListener('input', () => {
+              cardDescription.textContent = descriptionInput.value || '现代创作已无法彻底脱离 AI，也导致低质内容泛滥。为确保透明度与阅读质量，本文特在前文如实说明 AI 的参与占比与具体分工。同时倡议 AI 使用的规范与自律。';
+            });
+          }
 
     // 替换 iconify-icon 为内联 SVG
     function replaceIcons(root) {
@@ -545,7 +786,7 @@
     }
 
     async function captureCard() {
-      const el = document.getElementById('cardContent');
+      const el = document.getElementById('cardWrapper');
       await document.fonts.ready;
       await new Promise(r => setTimeout(r, 200));
 
@@ -553,9 +794,8 @@
       await new Promise(r => setTimeout(r, 100));
 
       try {
-        const isDark = document.body.classList.contains('dark');
         const canvas = await html2canvas(el, {
-          backgroundColor: isDark ? '#1a1a1a' : '#ffffff',
+          backgroundColor: null,
           scale: 3,
           useCORS: true,
           logging: false,
@@ -634,6 +874,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       initAnimation();
+      setupTagInputs();
+
       const updateBtn = document.getElementById('updateBtn');
       const copyBtn = document.getElementById('copyBtn');
       const downloadBtn = document.getElementById('downloadBtn');
